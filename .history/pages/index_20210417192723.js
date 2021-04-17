@@ -12,10 +12,10 @@ export default function Home({ data }) {
       setTodos(data);
     }
   }, []);
-  const addTodolistner = async (e) => {
+
+  const addTodolistner = (e) => {
     e.preventDefault();
-    await creatTodos({ descriptions: newTodo });
-    setnewTodo("");
+    console.log({ descriptions: newTodo });
   };
 
   return (

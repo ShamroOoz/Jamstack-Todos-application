@@ -12,6 +12,7 @@ export default function Home({ data }) {
       setTodos(data);
     }
   }, []);
+
   const addTodolistner = async (e) => {
     e.preventDefault();
     await creatTodos({ descriptions: newTodo });

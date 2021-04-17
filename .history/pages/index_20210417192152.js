@@ -12,10 +12,10 @@ export default function Home({ data }) {
       setTodos(data);
     }
   }, []);
-  const addTodolistner = async (e) => {
+
+  const addTodolistner = (e) => {
     e.preventDefault();
-    await creatTodos({ descriptions: newTodo });
-    setnewTodo("");
+    console.log(newTodo);
   };
 
   return (
@@ -23,7 +23,7 @@ export default function Home({ data }) {
       <div className="bg-white rounded shadow p-6 m-4 w-full">
         <div className="mb-4">
           <Navbar />
-          <form onSubmit={addTodolistner}>
+          <form onSubmit={addTodolistner}></form>
             <div className="flex mt-4">
               <input
                 className="form-control"
@@ -34,8 +34,8 @@ export default function Home({ data }) {
               <button type="submit" className="btn-add">
                 Add
               </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
         <div>
           {todos?.map((rcd) => (
