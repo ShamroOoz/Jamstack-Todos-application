@@ -3,7 +3,7 @@ import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="container mx-auto my-5 max-w-3xl">
+    <div className="container mx-auto">
       <Meta />
       <Component {...pageProps} />
     </div>
