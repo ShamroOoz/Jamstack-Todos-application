@@ -38,7 +38,7 @@ export default function Home({ data }) {
           </form>
         </div>
         <div>
-          {todos && todos.map((rcd) => <Todolists key={rcd.id} todo={rcd} />)}
+          {todos && todos?.map((rcd) => <Todolists key={rcd.id} todo={rcd} />)}
         </div>
       </div>
     </div>
