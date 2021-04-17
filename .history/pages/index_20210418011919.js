@@ -8,11 +8,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 export default function Home({ data }) {
   const { setTodos } = useTodos();
   const { user, error, isLoading } = useUser();
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
-
-  console.log(user);
+  console.log(data);
   useEffect(() => {
     if (data) {
       setTodos(data);

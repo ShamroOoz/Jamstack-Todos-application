@@ -9,7 +9,7 @@ export default withApiAuthRequired(async (req, res) => {
     return res.json({ errormsg: "Method not" });
   }
   const fields = { ...req.body, userId };
-
+  console.log(fields);
   try {
     const records = await tabel.create([{ fields }]);
     const createdRecords = formatRecords(records);

@@ -5,13 +5,12 @@ export default withApiAuthRequired(async (req, res) => {
   const { user } = getSession(req, res);
   const userId = user.sub;
   if (req.method !== "POST") {
-    res.statusCode = 405;
-    return res.json({ errormsg: "Method not" });
+    res.statusCode = 500;
+    return res.json({ errormsg: "Something went wrong" });
   }
-  const fields = { ...req.body, userId };
-
+  const fields = req.body;
   try {
-    const records = await tabel.create([{ fields }]);
+    const records = await tabel.create([{ fields, userId }]);
     const createdRecords = formatRecords(records);
     res.statusCode = 200;
     res.json(createdRecords[0]);

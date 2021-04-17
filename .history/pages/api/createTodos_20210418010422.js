@@ -8,7 +8,8 @@ export default withApiAuthRequired(async (req, res) => {
     res.statusCode = 405;
     return res.json({ errormsg: "Method not" });
   }
-  const fields = { ...req.body, userId };
+  const fields = req.body;
+  const data = { ...fields, userId };
 
   try {
     const records = await tabel.create([{ fields }]);

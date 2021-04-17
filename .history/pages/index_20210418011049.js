@@ -1,23 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { CreateTodos, Navbar } from "../components";
+import { CreateTodos, Navbar, Todolists } from "../components";
 import { server } from "../config";
 import { useTodos } from "../Context/Globalcontext";
-import { useUser } from "@auth0/nextjs-auth0";
 
 export default function Home({ data }) {
-  const { setTodos } = useTodos();
-  const { user, error, isLoading } = useUser();
+  const { todos, setTodos, creatTodos } = useTodos();
+  const [newTodo, setnewTodo] = useState("");
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
-
-  console.log(user);
   useEffect(() => {
     if (data) {
       setTodos(data);
     }
   }, []);
+  const addTodolistner = async (e) => {
+    e.preventDefault();
+    await creatTodos({ descriptions: newTodo });
+    setnewTodo("");
+  };
 
   return (
     <div className="h-100 w-full flex items-center justify-center font-sans bg-blue-100 ">
@@ -25,6 +25,9 @@ export default function Home({ data }) {
         <div className="mb-4">
           <Navbar />
           <CreateTodos />
+        </div>
+        <div>
+          {todos && todos.map((rcd) => <Todolists key={rcd.id} todo={rcd} />)}
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ export default function Navbar() {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
+  console.log(user);
   return (
     <div className="flex justify-between items-center">
       <div className="text-gray-600 font-bold text-xl">Todo List</div>

@@ -4,16 +4,7 @@ import { ProvideTodo } from "../Context/Globalcontext";
 import { UserProvider } from "@auth0/nextjs-auth0";
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <UserProvider>
-      <ProvideTodo>
-        <div className="container mx-auto my-5 max-w-3xl">
-          <Meta />
-          <Component {...pageProps} />
-        </div>
-      </ProvideTodo>
-    </UserProvider>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;

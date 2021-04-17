@@ -1,18 +1,12 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { CreateTodos, Navbar } from "../components";
+import { CreateTodos, Navbar, Todolists } from "../components";
 import { server } from "../config";
 import { useTodos } from "../Context/Globalcontext";
-import { useUser } from "@auth0/nextjs-auth0";
 
 export default function Home({ data }) {
-  const { setTodos } = useTodos();
-  const { user, error, isLoading } = useUser();
+  const { todos, setTodos, creatTodos } = useTodos();
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
-
-  console.log(user);
   useEffect(() => {
     if (data) {
       setTodos(data);
@@ -25,6 +19,9 @@ export default function Home({ data }) {
         <div className="mb-4">
           <Navbar />
           <CreateTodos />
+        </div>
+        <div>
+          {todos && todos.map((rcd) => <Todolists key={rcd.id} todo={rcd} />)}
         </div>
       </div>
     </div>

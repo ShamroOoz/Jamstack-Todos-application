@@ -6,17 +6,16 @@ export default function Navbar() {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
+
   return (
     <div className="flex justify-between items-center">
       <div className="text-gray-600 font-bold text-xl">Todo List</div>
       <div>
-        {!user && !isLoading && (
+        {user ? (
           <Link href="/api/auth/login">
             <a className="btn-lrg">Login</a>
           </Link>
-        )}
-
-        {user && !isLoading && (
+        ) : (
           <Link href="/api/auth/logout">
             <a className="btn-lrg">Logout</a>
           </Link>
