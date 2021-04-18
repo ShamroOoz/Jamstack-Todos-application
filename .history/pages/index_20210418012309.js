@@ -7,8 +7,12 @@ import { useUser } from "@auth0/nextjs-auth0";
 
 export default function Home({ data }) {
   const { setTodos } = useTodos();
-  const { user, isLoading } = useUser();
+  const { user, error, isLoading } = useUser();
 
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+
+  console.log(user.sub);
   useEffect(() => {
     if (data) {
       setTodos(data);
@@ -20,12 +24,7 @@ export default function Home({ data }) {
       <div className="bg-white rounded shadow p-6 m-4 w-full">
         <div className="mb-4">
           <Navbar />
-          {!user && !isLoading && (
-            <div className="text-2xl font-bold text-red-600 text-center mt-2">
-              You Need to Login to creat TODOs..
-            </div>
-          )}
-          {user && !isLoading && <CreateTodos />}
+          <CreateTodos />
         </div>
       </div>
     </div>

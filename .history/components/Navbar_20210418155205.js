@@ -6,9 +6,7 @@ export default function Navbar() {
 
   return (
     <div className="flex justify-between items-center">
-      <div className="text-gray-600 font-bold text-xl">
-        {!user ? "Todo App" : "Todo List"}
-      </div>
+      <div className="text-gray-600 font-bold text-xl">Todo List</div>
       <div>
         {!user && !isLoading && (
           <Link href="/api/auth/login">

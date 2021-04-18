@@ -20,11 +20,7 @@ export default function Home({ data }) {
       <div className="bg-white rounded shadow p-6 m-4 w-full">
         <div className="mb-4">
           <Navbar />
-          {!user && !isLoading && (
-            <div className="text-2xl font-bold text-red-600 text-center mt-2">
-              You Need to Login to creat TODOs..
-            </div>
-          )}
+          {!user && !isLoading && <div>You Need to Login to creat TODOs..</div>}
           {user && !isLoading && <CreateTodos />}
         </div>
       </div>

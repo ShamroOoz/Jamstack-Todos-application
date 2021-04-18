@@ -7,7 +7,6 @@ import { useUser } from "@auth0/nextjs-auth0";
 
 export default function Home({ data }) {
   const { setTodos } = useTodos();
-  const { user, isLoading } = useUser();
 
   useEffect(() => {
     if (data) {
@@ -20,21 +19,22 @@ export default function Home({ data }) {
       <div className="bg-white rounded shadow p-6 m-4 w-full">
         <div className="mb-4">
           <Navbar />
-          {!user && !isLoading && (
-            <div className="text-2xl font-bold text-red-600 text-center mt-2">
-              You Need to Login to creat TODOs..
-            </div>
-          )}
-          {user && !isLoading && <CreateTodos />}
+          {/* {user && !isLoading && user.sub === data.fields.userId && (
+            
+          )} */}
+          <CreateTodos />
         </div>
       </div>
     </div>
   );
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = withPageAuthRequired({
+   async () => {
   const { data } = await axios.get(`${server}/api/getTodos`);
   return {
     props: { data },
   };
 };
+});
+

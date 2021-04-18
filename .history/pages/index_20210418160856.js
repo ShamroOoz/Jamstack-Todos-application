@@ -10,6 +10,7 @@ export default function Home({ data }) {
   const { user, isLoading } = useUser();
 
   useEffect(() => {
+    console.log(user);
     if (data) {
       setTodos(data);
     }

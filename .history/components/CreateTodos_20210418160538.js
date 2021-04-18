@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTodos } from "../Context/Globalcontext";
 import Todolists from "./Todolists";
 import { useUser } from "@auth0/nextjs-auth0";
@@ -7,7 +7,6 @@ export default function CreateTodos() {
   const [newTodo, setnewTodo] = useState("");
   const { todos, creatTodos } = useTodos();
   const { user } = useUser();
-
   //
   const addTodolistner = async (e) => {
     e.preventDefault();
@@ -32,9 +31,7 @@ export default function CreateTodos() {
       </form>
       <div className="mt-3">
         {todos &&
-          todos
-            .filter((todo) => todo.fields.userId === user.sub)
-            .map((rcd) => <Todolists key={rcd.id} todo={rcd} />)}
+          todos.map((rcd) => <Todolists key={rcd.id} todo={rcd} user={user} />)}
       </div>
     </>
   );

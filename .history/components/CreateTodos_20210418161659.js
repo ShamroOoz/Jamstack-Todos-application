@@ -8,6 +8,11 @@ export default function CreateTodos() {
   const { todos, creatTodos } = useTodos();
   const { user } = useUser();
 
+  useEffect(() => {
+    console.log(todos);
+    let userTodo = todos.filter((todo) => todo.fields.userId === user.sub);
+    console.log(userTodo);
+  }, []);
   //
   const addTodolistner = async (e) => {
     e.preventDefault();
@@ -31,10 +36,7 @@ export default function CreateTodos() {
         </div>
       </form>
       <div className="mt-3">
-        {todos &&
-          todos
-            .filter((todo) => todo.fields.userId === user.sub)
-            .map((rcd) => <Todolists key={rcd.id} todo={rcd} />)}
+        {todos && todos.map((rcd) => <Todolists key={rcd.id} todo={rcd} />)}
       </div>
     </>
   );

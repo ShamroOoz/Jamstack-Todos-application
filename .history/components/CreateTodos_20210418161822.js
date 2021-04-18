@@ -8,6 +8,11 @@ export default function CreateTodos() {
   const { todos, creatTodos } = useTodos();
   const { user } = useUser();
 
+  useEffect(() => {
+    console.log(todos);
+    let userTodo = todos.filter((todo) => todo.fields.userId === user.sub);
+    console.log(userTodo);
+  }, []);
   //
   const addTodolistner = async (e) => {
     e.preventDefault();
