@@ -8,6 +8,8 @@ export default function CreateTodos() {
   const { todos, creatTodos } = useTodos();
   const { user } = useUser();
 
+  console.log(todos);
+  //
   const addTodolistner = async (e) => {
     e.preventDefault();
     await creatTodos({ descriptions: newTodo });
