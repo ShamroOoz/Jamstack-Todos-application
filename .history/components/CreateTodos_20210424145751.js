@@ -32,7 +32,10 @@ export default function CreateTodos() {
         </div>
       </form>
       <div className="mt-3">
-        {todos && todos.map((rcd) => <Todolists key={rcd.id} todo={rcd} />)}
+        {todos &&
+          todos
+            .filter((todo) => todo.fields.userId === user.sub)
+            .map((rcd) => <Todolists key={rcd.id} todo={rcd} />)}
       </div>
     </>
   );
